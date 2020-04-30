@@ -1,0 +1,35 @@
+results/
+policyfiles/*.lock.json
+.kitchen
+.kitchen.local.yml
+.idea
+terraform.tfvars
+terraform.tfstate*
+.terraform*
+.vagrant
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+attributes.env
+automate-credentials*.toml
+
+# Bundler
+Gemfile.lock
+gems.locked
+bin/*
+.bundle/*
+
+# test kitchen
+.kitchen/
+.kitchen.local.yml
+
+# Chef
+Berksfile.lock
+.zero-knife.rb
+Policyfile.lock.json
+terraform/.DS_Store
+terraform/aws/.tfswitchrc
+.DS_Store
