@@ -1,0 +1,12 @@
+[Unit]
+Description=weblistener
+After=network.target
+
+[Service]
+User=${os_user}
+WorkingDirectory=/home/${os_user}
+ExecStart=/home/${os_user}/listener.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
