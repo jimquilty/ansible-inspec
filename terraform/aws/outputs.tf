@@ -23,5 +23,5 @@ output "a2_url" {
 }
 
 output "node_ip" {
-  value = "${aws_instance.linux_nodes.private_ip}"
+  value = ["${aws_instance.linux_nodes.*.private_ip}"]
 }
