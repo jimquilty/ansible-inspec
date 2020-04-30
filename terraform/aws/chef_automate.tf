@@ -189,7 +189,7 @@ resource "aws_instance" "chef_automate" {
   }
 
   tags = {
-    Name          = "${format("chef_automate_${random_id.instance_id.hex}")}"
+    Name          = "${var.tag_contact}-${var.tag_customer}-chef_automate-${random_id.instance_id.hex}"
     X-Dept        = "${var.tag_dept}"
     X-Customer    = "${var.tag_customer}"
     X-Project     = "${var.tag_project}"
