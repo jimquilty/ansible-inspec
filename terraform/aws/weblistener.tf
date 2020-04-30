@@ -5,7 +5,6 @@ resource "aws_instance" "linux_weblistener" {
     private_key = "${file("${var.aws_key_pair_file}")}"
   }
 
-  count                       = "${var.linux_nodes_count}"
   ami                         = "${data.aws_ami.centos7.id}"
   instance_type               = "t2.medium"
   key_name                    = "${var.aws_key_pair_name}"
