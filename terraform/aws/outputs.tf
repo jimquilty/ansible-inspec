@@ -23,7 +23,7 @@ output "a2_url" {
 }
 
 output "weblistener_ip" {
-  value = ["${aws_instance.linux_weblistener.*.private_ip}"]
+  value = "${aws_instance.linux_weblistener.private_ip}"
 }
 
 output "node_ips" {
