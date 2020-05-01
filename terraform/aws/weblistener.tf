@@ -47,7 +47,7 @@ resource "aws_instance" "linux_weblistener" {
       "sudo /sbin/sysctl -w net.ipv4.conf.default.accept_source_route=0",
       "sudo /sbin/sysctl -w net.ipv4.conf.default.accept_redirects=0",
       "sudo /sbin/sysctl -w net.ipv4.conf.all.accept_redirects=0",
-      "sudo yum install python3",
+      "sudo yum install python3 -y",
       "sudo pip3 install flask"
     ]
   }

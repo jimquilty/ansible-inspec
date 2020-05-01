@@ -20,6 +20,8 @@ def webhook():
 		subprocess_cmd = shlex.split(shell_cmd)
 		subprocess.call(subprocess_cmd)
 		return '',200
+	elif request.method == 'GET':
+		return '',200
 	else:
 		abort(400)
 
