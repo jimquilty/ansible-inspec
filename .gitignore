@@ -33,3 +33,5 @@ Policyfile.lock.json
 terraform/.DS_Store
 terraform/aws/.tfswitchrc
 .DS_Store
+terraform/templates/id_rsa.pub
+terraform/templates/id_rsa
