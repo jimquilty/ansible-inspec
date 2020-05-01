@@ -25,6 +25,17 @@ resource "aws_security_group_rule" "ingress_allow_22_tcp_all" {
   security_group_id = "${aws_security_group.chef_automate.id}"
 }
 
+//////////////////////////
+// Weblistener Rules
+resource "aws_security_group_rule" "ingress_allow_5000_tcp_all" {
+  type              = "ingress"
+  from_port         = 5000
+  to_port           = 5000
+  protocol          = "tcp"
+  cidr_blocks       = ["10.0.1.0/24"]
+  security_group_id = "${aws_security_group.chef_automate.id}"
+}
+
 /////////////////////////
 // Habitat Supervisor Rules
 # Allow Habitat Supervisor http communication tcp
