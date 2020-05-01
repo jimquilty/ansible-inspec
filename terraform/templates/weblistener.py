@@ -14,6 +14,9 @@ def webhook():
 	print("webhook");sys.stdout.flush()
 	if request.method == 'POST':
 		json_data = request.get_json()
+		formatted_json = json.dumps(json_data, indent=2, sort_keys=True)
+		with open("/home/${os_user}/jsonDataFile.json", "w") as outfile:
+			outfile.write('%s' % formatted_json)
 		nodeName = json_data["node_name"]
 		nodeIP = re.search( r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', nodeName ).group()
 		shell_cmd = ("ansible-playbook -u ${os_user} /home/${os_user}/playbooks/httpd.yml -i %s," % nodeIP)
