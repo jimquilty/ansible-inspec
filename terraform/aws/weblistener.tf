@@ -33,12 +33,12 @@ resource "aws_instance" "linux_weblistener" {
     destination = "/home/${var.aws_centos_image_user}/weblistener.py"
   }
 
-    provisioner "file" {
+  provisioner "file" {
     content     = "${data.template_file.weblistener_service.rendered}"
     destination = "/home/${var.aws_centos_image_user}/weblistener.service"
   }
 
-    provisioner "file" {
+  provisioner "file" {
     content     = "${data.template_file.ansible_playbook.rendered}"
     destination = "/home/${var.aws_centos_image_user}/httpd.yml"
   }
