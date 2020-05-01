@@ -22,6 +22,10 @@ output "a2_url" {
   value = "${data.external.a2_secrets.result["a2_url"]}"
 }
 
-output "node_ip" {
+output "weblistener_ip" {
+  value = ["${aws_instance.linux_weblistener.*.private_ip}"]
+}
+
+output "node_ips" {
   value = ["${aws_instance.linux_nodes.*.private_ip}"]
 }
