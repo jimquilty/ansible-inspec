@@ -55,6 +55,7 @@ resource "aws_instance" "linux_weblistener" {
       "sudo yum install python3 -y",
       "sudo pip3 install flask",
       "sudo pip3 install ansible",
+      "chmod +x /home/${var.aws_centos_image_user}/weblistener.py",
       "mkdir /home/${var.aws_centos_image_user}/playbooks",
       "mv /home/${var.aws_centos_image_user}/httpd.yml /home/${var.aws_centos_image_user}/playbooks/httpd.yml",
       "sudo mv /home/${var.aws_centos_image_user}/weblistener.service /etc/systemd/system/weblistener.service",
