@@ -38,6 +38,11 @@ resource "aws_instance" "linux_weblistener" {
     destination = "/home/${var.aws_centos_image_user}/weblistener.service"
   }
 
+    provisioner "file" {
+    content     = "${data.template_file.ansible_playbook.rendered}"
+    destination = "/home/${var.aws_centos_image_user}/httpd.yml"
+  }
+
   provisioner "remote-exec" {
     inline = [
       "sudo rm -rf /etc/machine-id",
@@ -48,7 +53,14 @@ resource "aws_instance" "linux_weblistener" {
       "sudo /sbin/sysctl -w net.ipv4.conf.default.accept_redirects=0",
       "sudo /sbin/sysctl -w net.ipv4.conf.all.accept_redirects=0",
       "sudo yum install python3 -y",
-      "sudo pip3 install flask"
+      "sudo pip3 install flask",
+      "sudo pip3 install ansible",
+      "mkdir /home/${var.aws_centos_image_user}/playbooks",
+      "mv /home/${var.aws_centos_image_user}/httpd.yml /home/${var.aws_centos_image_user}/playbooks/httpd.yml",
+      "sudo mv /home/${var.aws_centos_image_user}/weblistener.service /etc/systemd/system/weblistener.service",
+      "sudo systemctl daemon-reload",
+      "sudo systemctl start weblistener",
+      "sudo systemctl enable weblistener"
     ]
   }
 }

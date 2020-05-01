@@ -22,6 +22,10 @@ data "template_file" "weblistener_service" {
   }
 }
 
+data "template_file" "ansible_playbook" {
+  template = "${file("${path.module}/../templates/httpd.yml")}"
+}
+
 data "template_file" "automate_eas_config" {
   template = "${file("${path.module}/../templates/automate-eas-config.toml.tpl")}"
 

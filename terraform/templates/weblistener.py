@@ -16,7 +16,7 @@ def webhook():
 		json_data = request.get_json()
 		nodeName = json_data["node_name"]
 		nodeIP = re.search( r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})', nodeName ).group()
-		shell_cmd = ("ansible-playbook -u ${os_user} /playbooks/site.yml -i %s," % nodeIP)
+		shell_cmd = ("ansible-playbook -u ${os_user} /home/${os_user}/playbooks/httpd.yml -i %s," % nodeIP)
 		subprocess_cmd = shlex.split(shell_cmd)
 		subprocess.call(subprocess_cmd)
 		return '',200

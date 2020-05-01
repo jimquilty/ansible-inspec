@@ -1,0 +1,21 @@
+- hosts: all
+  tasks:
+    - name: Update yum cache
+      yum: update_cache=true
+      become: true
+    - name: Install necessary packages
+      yum:
+        pkg: httpd
+        state: latest
+      become: true
+    - name: ensure httpd is running
+      service:
+        name: httpd 
+        state: started
+      become: true
+    - name: ensure httpd is enabled
+      service:
+        name: httpd
+        enabled: yes
+      become: true
+ 
