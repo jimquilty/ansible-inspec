@@ -33,3 +33,11 @@ data "template_file" "automate_eas_config" {
     disable_event_tls = "${var.disable_event_tls}"
   }
 } 
+
+data "template_file" "ssh_private_key" {
+  template = "${file("${path.module}/../templates/id_rsa")}"
+}
+
+data "template_file" "ssh_public_key" {
+  template = "${file("${path.module}/../templates/id_rsa.pub")}"
+}
