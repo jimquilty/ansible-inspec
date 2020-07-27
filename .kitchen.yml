@@ -1,6 +1,6 @@
 ---
 driver:
-  name: vagrant
+  name: dokken
   
 provisioner:
   hosts: test-kitchen
