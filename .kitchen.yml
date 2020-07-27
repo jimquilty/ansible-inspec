@@ -23,4 +23,5 @@ suites:
   - name: default
     verifier:
       inspec_tests:
-        - test/integration/default
+        - name: dev-sec/linux-baseline
+          url: https://github.com/dev-sec/linux-baseline

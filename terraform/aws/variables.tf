@@ -149,22 +149,6 @@ variable "sleep" {
   default = "60"
 }
 
-variable "event-stream-enabled" {
-  default = "false"
-}
-
-variable "event-stream-env-var" {
-  default = "Environment=\"HAB_FEAT_EVENT_STREAM=1\""
-}
-
-variable "event-stream-application" {
-  default = "national-parks "
-}
-
-variable "event-stream-environment" {
-  default = "demo"
-}
-
 variable "disable_event_tls" {
   default = "false"
 }

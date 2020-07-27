@@ -33,6 +33,7 @@ resource "aws_instance" "linux_weblistener" {
     destination = "/home/${var.aws_centos_image_user}/weblistener.py"
   }
 
+
   provisioner "file" {
     content     = "${data.template_file.weblistener_service.rendered}"
     destination = "/home/${var.aws_centos_image_user}/weblistener.service"
@@ -41,6 +42,16 @@ resource "aws_instance" "linux_weblistener" {
   provisioner "file" {
     content     = "${data.template_file.ansible_playbook.rendered}"
     destination = "/home/${var.aws_centos_image_user}/httpd.yml"
+  }
+
+  provisioner "file" {
+    content     = "${data.template_file.ssh_private_key.rendered}"
+    destination = "/home/${var.aws_centos_image_user}/.ssh/id_rsa"
+  }
+
+  provisioner "file" {
+    content     = "${data.template_file.ssh_public_key.rendered}"
+    destination = "/home/${var.aws_centos_image_user}/.ssh/id_rsa.pub"
   }
 
   provisioner "remote-exec" {
@@ -55,6 +66,7 @@ resource "aws_instance" "linux_weblistener" {
       "sudo yum install python3 -y",
       "sudo pip3 install flask",
       "sudo pip3 install ansible",
+      "chmod 600 /home/${var.aws_centos_image_user}/.ssh/id_rsa",
       "chmod +x /home/${var.aws_centos_image_user}/weblistener.py",
       "mkdir /home/${var.aws_centos_image_user}/playbooks",
       "mv /home/${var.aws_centos_image_user}/httpd.yml /home/${var.aws_centos_image_user}/playbooks/httpd.yml",

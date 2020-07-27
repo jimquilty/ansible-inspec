@@ -34,6 +34,11 @@ resource "aws_instance" "linux_nodes" {
     destination = "/home/${var.aws_centos_image_user}/CTL_SECRET"
   }
 
+  provisioner "file" {
+    content     = "${data.template_file.ssh_public_key.rendered}"
+    destination = "/home/${var.aws_centos_image_user}/id_rsa.pub"
+  }
+
   provisioner "remote-exec" {
     inline = [
       "sudo rm -rf /etc/machine-id",
@@ -42,7 +47,8 @@ resource "aws_instance" "linux_nodes" {
       "sudo /sbin/sysctl -w net.ipv4.conf.all.accept_source_route=0",
       "sudo /sbin/sysctl -w net.ipv4.conf.default.accept_source_route=0",
       "sudo /sbin/sysctl -w net.ipv4.conf.default.accept_redirects=0",
-      "sudo /sbin/sysctl -w net.ipv4.conf.all.accept_redirects=0"
+      "sudo /sbin/sysctl -w net.ipv4.conf.all.accept_redirects=0",
+      "cat /home/${var.aws_centos_image_user}/id_rsa.pub >> /home/${var.aws_centos_image_user}/.ssh/authorized_keys"
     ]
   }
 }
