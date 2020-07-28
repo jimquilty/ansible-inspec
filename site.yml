@@ -1,7 +1,7 @@
 - hosts: test-kitchen
   tasks:
-    # - name: Update yum cache
-    #   yum: update_cache=true
+    - name: Update yum cache
+      yum: update_cache=true
     - name: Install necessary packages
       yum:
         pkg: httpd
