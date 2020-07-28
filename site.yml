@@ -6,12 +6,12 @@
       yum:
         pkg: httpd
         state: latest
-    - name: ensure httpd is running
-      service:
-        name: httpd 
-        state: started
-    - name: ensure httpd is enabled
-      service:
-        name: httpd
-        enabled: yes
+    # - name: ensure httpd is running
+    #   service:
+    #     name: httpd 
+    #     state: started
+    # - name: ensure httpd is enabled
+    #   service:
+    #     name: httpd
+    #     enabled: yes
  
