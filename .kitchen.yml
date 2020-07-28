@@ -1,6 +1,6 @@
 ---
 driver:
-  name: dokken
+  name: docker
   
 provisioner:
   hosts: test-kitchen
