@@ -1,17 +1,8 @@
 - hosts: test-kitchen
   tasks:
-    - name: Update yum cache
-      yum: update_cache=true
-    - name: Install necessary packages
-      yum:
-        pkg: httpd
-        state: latest
-    - name: ensure httpd is running
-      service:
-        name: httpd 
-        state: started
-    - name: ensure httpd is enabled
-      service:
-        name: httpd
-        enabled: yes
+    - name: install the Win32-OpenSSH service
+      win_chocolatey:
+        name: openssh
+        package_params: /SSHServerFeature
+        state: present
  
