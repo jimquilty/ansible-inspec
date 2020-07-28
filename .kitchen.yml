@@ -21,6 +21,10 @@ platforms:
 
 suites:
   - name: default
+    lifecycle:
+      pre_verify:
+        - inspec compliance login https://10.11.1.147 --user admin --insecure --token "w9jKIRHIm9vMBW_3s95spyX9O2M="
     verifier:
       inspec_tests:
-        - test/integration/default
+        - name: cis-centos7-level1-server
+          compliance: admin/cis-centos7-level1-server
